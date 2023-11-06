@@ -37,8 +37,8 @@ modules:
       - cp -r share /app
     sources:
       - type: archive
-        url: https://github.com/loot/loot/releases/download/0.22.0/loot_0.22.0-Linux.tar.xz
-        sha256: 9dbd67871aea29ca009fcd8ffa34a37867f51d0b615160948e2b0dc2a33ad67d
+        url: https://github.com/loot/loot/releases/download/0.22.1/loot_0.22.1-Linux.tar.xz
+        sha256: 15d6c37ecfa7ab377c010514092be2f349fed5d01c7e29d4dd35fc1002ac1f4c
   - name: libtbb
     buildsystem: simple
     build-commands:
