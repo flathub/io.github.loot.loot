@@ -133,7 +133,7 @@ modules:
         url: https://github.com/mozilla/cbindgen/archive/0.26.0.tar.gz
         sha256: b45e1a64875b615702a86ac3084ef69ae32926241cd2b687a30c12474be15105
       # Generated using scripts/generate_manifests.sh
-      - ../../build/flatpak-manifests/cbindgen.json
+      - manifests/cbindgen.json
 
   - name: libloot
     buildsystem: cmake
@@ -163,9 +163,9 @@ modules:
         url: https://github.com/loot/loot-condition-interpreter/archive/4.0.0.tar.gz
         sha256: 8ed76a1393bd4a909a39d560444ac9186b795a56929d8b07ff77e4aef1e54adc
       # Generated using scripts/generate_manifests.sh
-      - ../../build/flatpak-manifests/esplugin.json
-      - ../../build/flatpak-manifests/libloadorder.json
-      - ../../build/flatpak-manifests/loot-condition-interpreter.json
+      - manifests/esplugin.json
+      - manifests/libloadorder.json
+      - manifests/loot-condition-interpreter.json
 
   - name: LOOT
     buildsystem: cmake
@@ -193,7 +193,7 @@ modules:
     no-make-install: true
     modules:
       # Generated using scripts/generate_manifests.sh
-      - ../../build/flatpak-manifests/docs.json
+      - manifests/docs.json
     sources:
       - type: file
         url: https://github.com/loot/loot/archive/refs/tags/0.22.4.tar.gz
