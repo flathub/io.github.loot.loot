@@ -1,0 +1,15 @@
+diff --git a/resources/linux/io.github.loot.loot.metainfo.xml b/resources/linux/io.github.loot.loot.metainfo.xml
+index a458aeef..41bc7692 100644
+--- a/resources/linux/io.github.loot.loot.metainfo.xml
++++ b/resources/linux/io.github.loot.loot.metainfo.xml
+@@ -13,6 +13,10 @@
+   <name>LOOT</name>
+   <summary>Modding utility for Starfield and some Elder Scrolls and Fallout games</summary>
+ 
++  <developer id="io.github.loot">
++    <name>The LOOT Team</name>
++  </developer>
++
+   <metadata_license>FSFAP</metadata_license>
+   <project_license>GPL-3.0-or-later</project_license>
+ 
