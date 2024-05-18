@@ -199,7 +199,6 @@ modules:
     sources:
       - type: git
         url: https://github.com/loot/loot.git
-        branch: debug-groups-editor-crash
         commit: 6adacebb838e2535f1371b0b1dc512fd81d328c6
       - type: file
         url: https://github.com/TinyTinni/ValveFileVDF/archive/c8adfc29e62cc980b595e965bedfb239087647ff.tar.gz
