@@ -201,6 +201,8 @@ modules:
       - type: file
         url: https://github.com/TinyTinni/ValveFileVDF/archive/c8adfc29e62cc980b595e965bedfb239087647ff.tar.gz
         sha256: 48a078ff1e360d9c2217c9bd2eb766928a0234b73bb2bd458d04c64644669550
+      - type: patch
+        path: patches/io.github.loot.loot.metainfo.xml.diff
 cleanup:
   - /bin/cbindgen
   - /include
