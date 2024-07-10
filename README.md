@@ -24,6 +24,7 @@
           url: https://github.com/loot/loot/archive/refs/tags/0.22.4.tar.gz
           sha256: a7cf30ed89bb84d3d6843f121cedb528720403bda1b08b816f338cbae7cc5f8e
     ```
-5. Commit the changes.
-6. Open a pull request for the changes.
-7. Once Flathub has built a test version, test it out. If it works, merge the pull request.
+5. In the copied YAML file, replace all instances of `../../build/flatpak-manifests/` with `manifests/`.
+6. Commit the changes.
+7. Open a pull request for the changes.
+8. Once Flathub has built a test version, test it out. If it works, merge the pull request.
