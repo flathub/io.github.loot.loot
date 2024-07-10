@@ -197,9 +197,10 @@ modules:
       # Generated using scripts/generate_manifests.sh
       - manifests/docs.json
     sources:
-      - type: archive
-        url: https://github.com/loot/loot/archive/refs/tags/0.23.0.tar.gz
-        sha256: 65d07b87e98d908eb0e9aa307ea7a7236508c41c6ed6f8b44975f5e0ff478a73
+      # Use the Git repository so that LOOT's commit hash gets embedded in the build.
+      - type: git
+        url: https://github.com/loot/loot.git
+        tag: 0.23.0
       - type: file
         url: https://github.com/TinyTinni/ValveFileVDF/archive/1a132f3b0b3cf501bdec03a99cdf009d99fc951c.tar.gz
         sha256: 28390fbc0f3d3250262c9229007d2989738c67c9c3a6ed47964fec8c7e84e073
