@@ -470,14 +470,14 @@
     {
         "type": "archive",
         "archive-type": "tar-gzip",
-        "url": "https://static.crates.io/crates/memchr/memchr-2.7.2.crate",
-        "sha256": "6c8640c5d730cb13ebd907d8d04b52f55ac9a2eec55b440c8892f40d56c76c1d",
-        "dest": "cargo/vendor/memchr-2.7.2"
+        "url": "https://static.crates.io/crates/memchr/memchr-2.7.4.crate",
+        "sha256": "78ca9ab1a0babb1e7d5695e3530886289c18cf2f87ec19a575a0abdce112e3a3",
+        "dest": "cargo/vendor/memchr-2.7.4"
     },
     {
         "type": "inline",
-        "contents": "{\"package\": \"6c8640c5d730cb13ebd907d8d04b52f55ac9a2eec55b440c8892f40d56c76c1d\", \"files\": {}}",
-        "dest": "cargo/vendor/memchr-2.7.2",
+        "contents": "{\"package\": \"78ca9ab1a0babb1e7d5695e3530886289c18cf2f87ec19a575a0abdce112e3a3\", \"files\": {}}",
+        "dest": "cargo/vendor/memchr-2.7.4",
         "dest-filename": ".cargo-checksum.json"
     },
     {
