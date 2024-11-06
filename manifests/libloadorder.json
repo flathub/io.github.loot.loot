@@ -418,14 +418,14 @@
     {
         "type": "archive",
         "archive-type": "tar-gzip",
-        "url": "https://static.crates.io/crates/esplugin/esplugin-6.1.0.crate",
-        "sha256": "5d29f6c8d421c93c886413a613c7c8d331e7edeccbe986e53e09b996243a5a88",
-        "dest": "cargo/vendor/esplugin-6.1.0"
+        "url": "https://static.crates.io/crates/esplugin/esplugin-6.1.1.crate",
+        "sha256": "d5be744c54f80f535dc03a47c6a12c5116525edfa8a1365f13e91c42a0ad4d55",
+        "dest": "cargo/vendor/esplugin-6.1.1"
     },
     {
         "type": "inline",
-        "contents": "{\"package\": \"5d29f6c8d421c93c886413a613c7c8d331e7edeccbe986e53e09b996243a5a88\", \"files\": {}}",
-        "dest": "cargo/vendor/esplugin-6.1.0",
+        "contents": "{\"package\": \"d5be744c54f80f535dc03a47c6a12c5116525edfa8a1365f13e91c42a0ad4d55\", \"files\": {}}",
+        "dest": "cargo/vendor/esplugin-6.1.1",
         "dest-filename": ".cargo-checksum.json"
     },
     {
@@ -574,14 +574,14 @@
     {
         "type": "archive",
         "archive-type": "tar-gzip",
-        "url": "https://static.crates.io/crates/libc/libc-0.2.159.crate",
-        "sha256": "561d97a539a36e26a9a5fad1ea11a3039a67714694aaa379433e580854bc3dc5",
-        "dest": "cargo/vendor/libc-0.2.159"
+        "url": "https://static.crates.io/crates/libc/libc-0.2.161.crate",
+        "sha256": "8e9489c2807c139ffd9c1794f4af0ebe86a828db53ecdc7fea2111d0fed085d1",
+        "dest": "cargo/vendor/libc-0.2.161"
     },
     {
         "type": "inline",
-        "contents": "{\"package\": \"561d97a539a36e26a9a5fad1ea11a3039a67714694aaa379433e580854bc3dc5\", \"files\": {}}",
-        "dest": "cargo/vendor/libc-0.2.159",
+        "contents": "{\"package\": \"8e9489c2807c139ffd9c1794f4af0ebe86a828db53ecdc7fea2111d0fed085d1\", \"files\": {}}",
+        "dest": "cargo/vendor/libc-0.2.161",
         "dest-filename": ".cargo-checksum.json"
     },
     {
@@ -1146,14 +1146,14 @@
     {
         "type": "archive",
         "archive-type": "tar-gzip",
-        "url": "https://static.crates.io/crates/unicase/unicase-2.7.0.crate",
-        "sha256": "f7d2d4dafb69621809a81864c9c1b864479e1235c0dd4e199924b9742439ed89",
-        "dest": "cargo/vendor/unicase-2.7.0"
+        "url": "https://static.crates.io/crates/unicase/unicase-2.8.0.crate",
+        "sha256": "7e51b68083f157f853b6379db119d1c1be0e6e4dec98101079dec41f6f5cf6df",
+        "dest": "cargo/vendor/unicase-2.8.0"
     },
     {
         "type": "inline",
-        "contents": "{\"package\": \"f7d2d4dafb69621809a81864c9c1b864479e1235c0dd4e199924b9742439ed89\", \"files\": {}}",
-        "dest": "cargo/vendor/unicase-2.7.0",
+        "contents": "{\"package\": \"7e51b68083f157f853b6379db119d1c1be0e6e4dec98101079dec41f6f5cf6df\", \"files\": {}}",
+        "dest": "cargo/vendor/unicase-2.8.0",
         "dest-filename": ".cargo-checksum.json"
     },
     {
