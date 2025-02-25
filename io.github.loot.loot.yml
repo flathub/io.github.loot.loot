@@ -1,6 +1,6 @@
 app-id: io.github.loot.loot
 runtime: org.kde.Platform
-runtime-version: '6.7'
+runtime-version: '6.8'
 sdk: org.kde.Sdk
 command: LOOT
 finish-args:
@@ -15,6 +15,7 @@ finish-args:
   # Steam package default library paths.
   - --filesystem=xdg-data/Steam/steamapps/common
   - --filesystem=xdg-data/Steam/steamapps/compatdata
+  - --filesystem=~/.steam/steam/steamapps/common
   # Steam Flatpak data.
   - --filesystem=~/.var/app/com.valvesoftware.Steam/.local/share/Steam:ro
   # Steam Flatpak default library paths.
@@ -28,6 +29,25 @@ finish-args:
   - --filesystem=~/.var/app/com.heroicgameslauncher.hgl/config/heroic:ro
   # Heroic Games Launcher default games install path.
   - --filesystem=~/Games/Heroic
+  # OpenMW's Ubuntu, Debian, Arch and OpenSUSE packages install its global
+  # config files under /etc/openmw.
+  - --filesystem=host-etc:ro
+  # OpenMW's Ubuntu, Debian, Arch and OpenSUSE packages install its global data
+  # and executable files under /usr.
+  - --filesystem=host-os:ro
+  # OpenMW user config for Ubuntu, Debian, Arch and OpenSUSE packages
+  - --filesystem=xdg-config/openmw/openmw.cfg
+  # OpenMW user data for Ubuntu, Debian, Arch and OpenSUSE packages
+  - --filesystem=xdg-data/openmw:ro
+  # OpenMW system Flatpak install path
+  - --filesystem=/var/lib/flatpak/app/org.openmw.OpenMW:ro
+  # OpenMW user Flatpak install path
+  - --filesystem=~/.local/share/flatpak/app/org.openmw.OpenMW:ro
+  # OpenMW Flatpak user config
+  - --filesystem=~/.var/app/org.openmw.OpenMW/config/openmw/openmw.cfg
+  # OpenMW Flatpak user data
+  - --filesystem=~/.var/app/org.openmw.OpenMW/data/openmw:ro
+
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.rust-stable
 modules:
@@ -38,8 +58,8 @@ modules:
       - ./b2 link=static runtime-link=shared variant=release cxxflags="-std=c++17 -fPIC" --with-locale install
     sources:
       - type: archive
-        url: https://boostorg.jfrog.io/artifactory/main/release/1.85.0/source/boost_1_85_0.tar.bz2
-        sha256: 7009fe1faa1697476bdc7027703a2badb84e849b7b0baad5086b087b971f8617
+        url: https://archives.boost.io/release/1.87.0/source/boost_1_87_0.tar.bz2
+        sha256: af57be25cb4c4f4b413ed692fe378affb4352ea50fbe294a11ef548f4d527d89
 
   - name: libtbb
     buildsystem: cmake-ninja
@@ -49,8 +69,8 @@ modules:
       - -DTBB_TEST=OFF
     sources:
       - type: archive
-        url: https://github.com/oneapi-src/oneTBB/archive/refs/tags/v2021.12.0.tar.gz
-        sha256: c7bb7aa69c254d91b8f0041a71c5bcc3936acb64408a1719aec0b2b7639dd84f
+        url: https://github.com/uxlfoundation/oneTBB/archive/refs/tags/v2022.0.0.tar.gz
+        sha256: e8e89c9c345415b17b30a2db3095ba9d47647611662073f7fbf54ad48b7f3c2a
 
   - name: minizip-ng
     buildsystem: cmake-ninja
@@ -70,8 +90,8 @@ modules:
       - -DMZ_COMPRESS_ONLY=ON
     sources:
       - type: archive
-        url: https://github.com/zlib-ng/minizip-ng/archive/refs/tags/4.0.7.tar.gz
-        sha256: a87f1f734f97095fe1ef0018217c149d53d0f78438bcb77af38adc21dff2dfbc
+        url: https://github.com/zlib-ng/minizip-ng/archive/refs/tags/4.0.8.tar.gz
+        sha256: c3e9ceab2bec26cb72eba1cf46d0e2c7cad5d2fe3adf5df77e17d6bbfea4ec8f
 
   - name: tomlplusplus
     buildsystem: cmake-ninja
@@ -93,8 +113,8 @@ modules:
       - -DCMAKE_POSITION_INDEPENDENT_CODE=ON
     sources:
       - type: archive
-        url: https://github.com/fmtlib/fmt/archive/refs/tags/11.0.2.tar.gz
-        sha256: 6cb1e6d37bdcb756dbbe59be438790db409cdb4868c66e888d5df9f13f7c027f
+        url: https://github.com/fmtlib/fmt/archive/refs/tags/11.1.3.tar.gz
+        sha256: 67cd23ea86ccc359693e2ce1ba8d1bab533c02d743c09b15f3131102d0c2fc1c
 
   - name: spdlog
     buildsystem: cmake-ninja
@@ -106,8 +126,8 @@ modules:
       - -DSPDLOG_FMT_EXTERNAL=ON
     sources:
       - type: archive
-        url: https://github.com/gabime/spdlog/archive/v1.14.1.tar.gz
-        sha256: 1586508029a7d0670dfcb2d97575dcdc242d3868a259742b69f100801ab4e16b
+        url: https://github.com/gabime/spdlog/archive/v1.15.1.tar.gz
+        sha256: 25c843860f039a1600f232c6eb9e01e6627f7d030a2ae5e232bdd3c9205d26cc
 
   - name: OGDF
     buildsystem: cmake-ninja
@@ -151,7 +171,7 @@ modules:
       - manifests/cbindgen.json
 
   - name: libloot
-    buildsystem: cmake
+    buildsystem: cmake-ninja
     builddir: true
     build-options:
       append-path: /usr/lib/sdk/rust-stable/bin
@@ -162,23 +182,23 @@ modules:
       - -DLIBLOOT_BUILD_TESTS=OFF
       - -DLIBLOOT_INSTALL_DOCS=OFF
       - -DESPLUGIN_URL=/run/build/libloot/6.1.1.tar.gz
-      - -DLIBLOADORDER_URL=/run/build/libloot/18.1.3.tar.gz
-      - -DLOOT_CONDITION_INTERPRETER_URL=/run/build/libloot/4.0.2.tar.gz
+      - -DLIBLOADORDER_URL=/run/build/libloot/18.2.2.tar.gz
+      - -DLOOT_CONDITION_INTERPRETER_URL=/run/build/libloot/5.2.0.tar.gz
     sources:
       # Use the Git repository so that libloot's commit hash gets embedded in the build.
       - type: git
         url: https://github.com/loot/libloot.git
-        tag: 0.24.5
-        commit: 44008ea720bb012e5d69e97186bfe120735586ad
+        tag: 0.25.3
+        commit: db6d39bd93c9227a2ed92fba766c060f8b52db1e
       - type: file
         url: https://github.com/Ortham/esplugin/archive/refs/tags/6.1.1.tar.gz
         sha256: 8896859a6469e810c6e5430ed910fa8f8c31d39e032703b87ab090759663a240
       - type: file
-        url: https://github.com/Ortham/libloadorder/archive/refs/tags/18.1.3.tar.gz
-        sha256: 1668b41f17c7c4076f1fe82f8f0a48108b13c2f1724d0068711ee3af92744e67
+        url: https://github.com/Ortham/libloadorder/archive/refs/tags/18.2.2.tar.gz
+        sha256: 5e4c12e91180abbf201be70b3073fce791bdee2d70f33f89b35942446d3b5782
       - type: file
-        url: https://github.com/loot/loot-condition-interpreter/archive/refs/tags/4.0.2.tar.gz
-        sha256: 95b47e11cb6ddb63b3208f7620f1608dc51ea7f17639f321ee91fa1bc0c23797
+        url: https://github.com/loot/loot-condition-interpreter/archive/refs/tags/5.2.0.tar.gz
+        sha256: 48db9d1022c65c6ea53b5febbbb8a45d089ac8e8773f8e14b069387fab80948d
       # Generated using scripts/generate_manifests.sh
       - manifests/esplugin.json
       - manifests/libloadorder.json
@@ -190,7 +210,7 @@ modules:
     config-opts:
       - -DCMAKE_BUILD_TYPE=Release
       - -DLOOT_BUILD_TESTS=OFF
-      - -DVALVE_FILE_VDF_URL=/run/build/LOOT/v1.0.1.tar.gz
+      - -DVALVE_FILE_VDF_URL=/run/build/LOOT/v1.1.0.tar.gz
     build-commands:
       - install -D LOOT /app/bin/LOOT
       - install -D ../resources/linux/io.github.loot.loot.metainfo.xml /app/share/metainfo/io.github.loot.loot.metainfo.xml
@@ -200,11 +220,9 @@ modules:
         cd ..
         python scripts/po_to_mo.py
       - |
-        for dir in ../resources/l10n/*/
+        for path in ../resources/l10n/*/LC_MESSAGES/loot.mo
         do
-          dir="${dir%*/}"
-          dir="${dir##*/}"
-          install -D "../resources/l10n/$dir/LC_MESSAGES/loot.mo" "/app/share/locale/$dir/LC_MESSAGES/loot.mo"
+          install -D "$path" "/app/share/locale/${path#../resources/l10n/}"
         done
       - sphinx-build -b html ../docs /app/share/doc/loot
     no-make-install: true
@@ -215,10 +233,10 @@ modules:
       # Use the Git repository so that LOOT's commit hash gets embedded in the build.
       - type: git
         url: https://github.com/loot/loot.git
-        tag: 0.24.1
+        tag: 0.25.0
       - type: file
-        url: https://github.com/TinyTinni/ValveFileVDF/archive/refs/tags/v1.0.1.tar.gz
-        sha256: 57445663379470412126661b462191201539ddb43186a796cc9ac68e6dffa9a6
+        url: https://github.com/TinyTinni/ValveFileVDF/archive/refs/tags/v1.1.0.tar.gz
+        sha256: 9149a6b01ca857f49f5660d608639acd579542bf862ad23e9cbf4c1e80ade55e
 cleanup:
   - /bin/cbindgen
   - /include
