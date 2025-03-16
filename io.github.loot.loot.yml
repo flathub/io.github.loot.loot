@@ -188,8 +188,8 @@ modules:
       # Use the Git repository so that libloot's commit hash gets embedded in the build.
       - type: git
         url: https://github.com/loot/libloot.git
-        tag: 0.25.3
-        commit: db6d39bd93c9227a2ed92fba766c060f8b52db1e
+        tag: 0.25.5
+        commit: 2d96ba13d9edd19702cd694d089a51f9e969d3d2
       - type: file
         url: https://github.com/Ortham/esplugin/archive/refs/tags/6.1.1.tar.gz
         sha256: 8896859a6469e810c6e5430ed910fa8f8c31d39e032703b87ab090759663a240
@@ -233,7 +233,7 @@ modules:
       # Use the Git repository so that LOOT's commit hash gets embedded in the build.
       - type: git
         url: https://github.com/loot/loot.git
-        tag: 0.25.0
+        tag: 0.25.2
       - type: file
         url: https://github.com/TinyTinni/ValveFileVDF/archive/refs/tags/v1.1.0.tar.gz
         sha256: 9149a6b01ca857f49f5660d608639acd579542bf862ad23e9cbf4c1e80ade55e
