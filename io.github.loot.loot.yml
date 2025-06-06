@@ -89,8 +89,8 @@ modules:
       - -DMZ_COMPRESS_ONLY=ON
     sources:
       - type: archive
-        url: https://github.com/zlib-ng/minizip-ng/archive/refs/tags/4.0.8.tar.gz
-        sha256: c3e9ceab2bec26cb72eba1cf46d0e2c7cad5d2fe3adf5df77e17d6bbfea4ec8f
+        url: https://github.com/zlib-ng/minizip-ng/archive/refs/tags/4.0.10.tar.gz
+        sha256: c362e35ee973fa7be58cc5e38a4a6c23cc8f7e652555daf4f115a9eb2d3a6be7
 
   - name: tomlplusplus
     buildsystem: cmake-ninja
@@ -112,8 +112,8 @@ modules:
       - -DCMAKE_POSITION_INDEPENDENT_CODE=ON
     sources:
       - type: archive
-        url: https://github.com/fmtlib/fmt/archive/refs/tags/11.1.3.tar.gz
-        sha256: 67cd23ea86ccc359693e2ce1ba8d1bab533c02d743c09b15f3131102d0c2fc1c
+        url: https://github.com/fmtlib/fmt/archive/refs/tags/11.2.0.tar.gz
+        sha256: bc23066d87ab3168f27cef3e97d545fa63314f5c79df5ea444d41d56f962c6af
 
   - name: spdlog
     buildsystem: cmake-ninja
@@ -125,8 +125,8 @@ modules:
       - -DSPDLOG_FMT_EXTERNAL=ON
     sources:
       - type: archive
-        url: https://github.com/gabime/spdlog/archive/v1.15.1.tar.gz
-        sha256: 25c843860f039a1600f232c6eb9e01e6627f7d030a2ae5e232bdd3c9205d26cc
+        url: https://github.com/gabime/spdlog/archive/v1.15.3.tar.gz
+        sha256: 15a04e69c222eb6c01094b5c7ff8a249b36bb22788d72519646fb85feb267e67
 
   - name: OGDF
     buildsystem: cmake-ninja
@@ -174,8 +174,8 @@ modules:
       # Use the Git repository so that libloot's commit hash gets embedded in the build.
       - type: git
         url: https://github.com/loot/libloot.git
-        tag: 0.26.1
-        commit: 070822f37f48625683d2296214cce61c4e575a70
+        tag: 0.26.3
+        commit: 54c3f1a4851c854c75d30ed36b2d09ad754421b6
       - type: file
         url: https://github.com/Ortham/esplugin/archive/refs/tags/6.1.3.tar.gz
         sha256: d11373b9108036e8d8453ff77000ae2961f9d1243c99c42dd732dad0c83d8618
@@ -223,7 +223,8 @@ modules:
       # Use the Git repository so that LOOT's commit hash gets embedded in the build.
       - type: git
         url: https://github.com/loot/loot.git
-        tag: 0.26.0
+        tag: 0.26.1
+        commit: c8b84275f863d785021b6593b6b2641e7530fd1c
       - type: file
         url: https://github.com/TinyTinni/ValveFileVDF/archive/refs/tags/v1.1.0.tar.gz
         sha256: 9149a6b01ca857f49f5660d608639acd579542bf862ad23e9cbf4c1e80ade55e
