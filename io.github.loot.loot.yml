@@ -1,6 +1,6 @@
 app-id: io.github.loot.loot
 runtime: org.kde.Platform
-runtime-version: '6.9'
+runtime-version: '6.10'
 sdk: org.kde.Sdk
 command: LOOT
 finish-args:
@@ -50,6 +50,16 @@ finish-args:
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.rust-stable
 modules:
+  - name: OGDF
+    buildsystem: cmake-ninja
+    builddir: true
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=Release
+    sources:
+      - type: archive
+        url: https://ogdf.uos.de/wp-content/uploads/2025/10/ogdf.v2025.10.zip
+        sha256: 54f8fc9c2b44b3e4f34ca85be3ae77ce2a309337397662c1432a960367522ccb
+
   - name: Boost
     buildsystem: simple
     build-commands:
@@ -57,8 +67,8 @@ modules:
       - ./b2 link=static runtime-link=shared variant=release cxxflags="-std=c++17 -fPIC" --with-locale install
     sources:
       - type: archive
-        url: https://archives.boost.io/release/1.87.0/source/boost_1_87_0.tar.bz2
-        sha256: af57be25cb4c4f4b413ed692fe378affb4352ea50fbe294a11ef548f4d527d89
+        url: https://archives.boost.io/release/1.90.0/source/boost_1_90_0.tar.bz2
+        sha256: 49551aff3b22cbc5c5a9ed3dbc92f0e23ea50a0f7325b0d198b705e8ee3fc305
 
   - name: libtbb
     buildsystem: cmake-ninja
@@ -68,8 +78,8 @@ modules:
       - -DTBB_TEST=OFF
     sources:
       - type: archive
-        url: https://github.com/uxlfoundation/oneTBB/archive/refs/tags/v2022.0.0.tar.gz
-        sha256: e8e89c9c345415b17b30a2db3095ba9d47647611662073f7fbf54ad48b7f3c2a
+        url: https://github.com/uxlfoundation/oneTBB/archive/refs/tags/v2022.3.0.tar.gz
+        sha256: 01598a46c1162c27253a0de0236f520fd8ee8166e9ebb84a4243574f88e6e50a
 
   - name: minizip-ng
     buildsystem: cmake-ninja
@@ -89,8 +99,8 @@ modules:
       - -DMZ_COMPRESS_ONLY=ON
     sources:
       - type: archive
-        url: https://github.com/zlib-ng/minizip-ng/archive/refs/tags/4.0.10.tar.gz
-        sha256: c362e35ee973fa7be58cc5e38a4a6c23cc8f7e652555daf4f115a9eb2d3a6be7
+        url: https://github.com/zlib-ng/minizip-ng/archive/refs/tags/4.1.0.tar.gz
+        sha256: 85417229bb0cd56403e811c316150eea1a3643346d9cec7512ddb7ea291b06f2
 
   - name: tomlplusplus
     buildsystem: cmake-ninja
@@ -102,19 +112,6 @@ modules:
         url: https://github.com/marzer/tomlplusplus/archive/v3.4.0.tar.gz
         sha256: 8517f65938a4faae9ccf8ebb36631a38c1cadfb5efa85d9a72e15b9e97d25155
 
-  - name: fmt
-    buildsystem: cmake-ninja
-    builddir: true
-    config-opts:
-      - -DCMAKE_BUILD_TYPE=Release
-      - -DFMT_DOC=OFF
-      - -DFMT_TEST=OFF
-      - -DCMAKE_POSITION_INDEPENDENT_CODE=ON
-    sources:
-      - type: archive
-        url: https://github.com/fmtlib/fmt/archive/refs/tags/12.0.0.tar.gz
-        sha256: aa3e8fbb6a0066c03454434add1f1fc23299e85758ceec0d7d2d974431481e40
-
   - name: spdlog
     buildsystem: cmake-ninja
     builddir: true
@@ -125,18 +122,8 @@ modules:
       - -DSPDLOG_FMT_EXTERNAL=ON
     sources:
       - type: archive
-        url: https://github.com/gabime/spdlog/archive/v1.15.3.tar.gz
-        sha256: 15a04e69c222eb6c01094b5c7ff8a249b36bb22788d72519646fb85feb267e67
-
-  - name: OGDF
-    buildsystem: cmake-ninja
-    builddir: true
-    config-opts:
-      - -DCMAKE_BUILD_TYPE=Release
-    sources:
-      - type: archive
-        url: https://ogdf.uos.de/wp-content/uploads/2023/09/ogdf.v2023.09.zip
-        sha256: a82298cfbcd9365d9650f3e5c09b49dc3e6cdf7ff80483133d02b9d371165436
+        url: https://github.com/gabime/spdlog/archive/refs/tags/v1.17.0.tar.gz
+        sha256: d8862955c6d74e5846b3f580b1605d2428b11d97a410d86e2fb13e857cd3a744
 
   - name: libloot
     buildsystem: cmake-ninja
@@ -154,10 +141,20 @@ modules:
       # Use the Git repository so that libloot's commit hash gets embedded in the build.
       - type: git
         url: https://github.com/loot/libloot.git
-        tag: 0.28.2
-        commit: cfda074b2e35b898be06b36d5d0af5cdddd32764
+        tag: 0.29.3
+        commit: 7104c92bef8990316482dc79a9f42ecddf58953e
       # Generated using scripts/generate_manifests.sh
       - manifests/libloot.json
+
+  - name: svg_to_ico
+    buildsystem: simple
+    build-commands:
+      - tar -xf svg_to_ico.tar.xz
+      - install -D svg_to_ico /app/bin/svg_to_ico
+    sources:
+      - type: file
+        url: https://github.com/Ortham/svg_to_ico/releases/download/1.3.1/svg_to_ico.tar.xz
+        sha256: 04897b6384e7c3141c8343335b66bde3b184d7d65940980c38689b3ef4453f2f
 
   - name: LOOT
     buildsystem: cmake-ninja
@@ -165,7 +162,7 @@ modules:
     config-opts:
       - -DCMAKE_BUILD_TYPE=Release
       - -DLOOT_BUILD_TESTS=OFF
-      - -DVALVE_FILE_VDF_URL=/run/build/LOOT/v1.1.0.tar.gz
+      - -DFETCHCONTENT_SOURCE_DIR_VALVEFILEVDF=/run/build/LOOT/ValveFileVDF
     build-commands:
       - install -D LOOT /app/bin/LOOT
       - install -D ../resources/linux/io.github.loot.loot.metainfo.xml /app/share/metainfo/io.github.loot.loot.metainfo.xml
@@ -182,12 +179,14 @@ modules:
       # Use the Git repository so that LOOT's commit hash gets embedded in the build.
       - type: git
         url: https://github.com/loot/loot.git
-        tag: 0.28.0
-        commit: e36befdde385c19a9fbdb2855ff3dec16f9363db
-      - type: file
+        tag: 0.29.0
+        commit: 0a32d6b65efbb491019f39d839539f81fbebd5db
+      - type: archive
         url: https://github.com/TinyTinni/ValveFileVDF/archive/refs/tags/v1.1.0.tar.gz
         sha256: 9149a6b01ca857f49f5660d608639acd579542bf862ad23e9cbf4c1e80ade55e
+        dest: ValveFileVDF
 cleanup:
+  - /bin/svg_to_ico
   - /include
   - /lib/cmake
   - /lib/*.a
