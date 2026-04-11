@@ -49,6 +49,16 @@ finish-args:
 
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.rust-stable
+
+cleanup:
+  - /include
+  - /lib/cmake
+  - /lib/pkgconfig
+  - /share/doc
+  - /share/ogdf
+  - /share/tomlplusplus
+  - "*.a"
+
 modules:
   - name: OGDF
     buildsystem: cmake-ninja
@@ -148,6 +158,8 @@ modules:
 
   - name: svg_to_ico
     buildsystem: simple
+    cleanup:
+      - "/bin"
     build-commands:
       - tar -xf svg_to_ico.tar.xz
       - install -D svg_to_ico /app/bin/svg_to_ico
@@ -185,14 +197,3 @@ modules:
         url: https://github.com/TinyTinni/ValveFileVDF/archive/refs/tags/v1.1.0.tar.gz
         sha256: 9149a6b01ca857f49f5660d608639acd579542bf862ad23e9cbf4c1e80ade55e
         dest: ValveFileVDF
-cleanup:
-  - /bin/svg_to_ico
-  - /include
-  - /lib/cmake
-  - /lib/*.a
-  - /lib/pkgconfig
-  - /lib/python3.10
-  - /lib/x86_64-linux-gnu
-  - /share/doc/libogdf
-  - /share/doc/TBB
-  - /share/tomlplusplus
