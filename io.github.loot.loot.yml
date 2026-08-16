@@ -1,6 +1,6 @@
 app-id: io.github.loot.loot
 runtime: org.kde.Platform
-runtime-version: '6.10'
+runtime-version: '6.11'
 sdk: org.kde.Sdk
 command: LOOT
 finish-args:
@@ -68,8 +68,8 @@ modules:
       - ./b2 link=static runtime-link=shared variant=release debug-symbols=on cxxflags="-std=c++17 -fPIC" --with-locale install
     sources:
       - type: archive
-        url: https://archives.boost.io/release/1.90.0/source/boost_1_90_0.tar.bz2
-        sha256: 49551aff3b22cbc5c5a9ed3dbc92f0e23ea50a0f7325b0d198b705e8ee3fc305
+        url: https://archives.boost.io/release/1.91.0/source/boost_1_91_0.tar.bz2
+        sha256: de5e6b0e4913395c6bdfa90537febd9028ea4c0735d2cdb0cd9b45d5f51264f5
 
   - name: libtbb
     buildsystem: cmake-ninja
@@ -142,8 +142,8 @@ modules:
       # Use the Git repository so that libloot's commit hash gets embedded in the build.
       - type: git
         url: https://github.com/loot/libloot.git
-        tag: 0.29.4
-        commit: 56bafaead362b06aa63e02f8917ffde0777d36ae
+        tag: 0.29.6
+        commit: 136f3983c3eec7d377f83a7e7e0b0129aa5c8fe1
       # Generated using scripts/generate_manifests.sh
       - manifests/libloot.json
 
@@ -180,8 +180,8 @@ modules:
       # Use the Git repository so that LOOT's commit hash gets embedded in the build.
       - type: git
         url: https://github.com/loot/loot.git
-        tag: 0.29.1
-        commit: 77f3ba98966819fd6d92d97dcb2dbc4c1b9fb9b9
+        tag: 0.29.2
+        commit: 0402143e211ee20352c10965fa1a36df5edc63d5
       - type: archive
         url: https://github.com/TinyTinni/ValveFileVDF/archive/refs/tags/v1.1.0.tar.gz
         sha256: 9149a6b01ca857f49f5660d608639acd579542bf862ad23e9cbf4c1e80ade55e
